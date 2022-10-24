@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<form action="{% url 'report_crime' %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+ <div class="mt-10 sm:mt-0">
+    <div class="md:grid md:grid-cols-3 md:gap-6">
+      <div class="md:col-span-1">
+        <div class="px-4 sm:px-0">
+          <h3 class="text-lg font-medium leading-6 text-gray-900">Report a crime scene or give any tip off</h3>
+          <p class="mt-1 text-sm text-gray-600">Use a permanent address where you can receive mail.</p>
+        </div>
+      </div>
+      <div class="mt-5 md:col-span-2 md:mt-0">
+        <form action="#" method="POST">
+          <div class="overflow-hidden shadow sm:rounded-md">
+            <div class="bg-white px-4 py-5 sm:p-6">
+              <div class="grid grid-cols-6 gap-6">
+                <div class="col-span-6 sm:col-span-3">
+                  <label for="first-name" class="block text-sm font-medium text-gray-700">State</label>
+                  <input type="text" name="state" id="first-name" autocomplete="given-name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                </div>
+  
+                <div class="col-span-6 sm:col-span-3">
+                    <label for="country" class="block text-sm font-medium text-gray-700">Country</label>
+                    <select id="country" name="country" autocomplete="country-name" class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                      <option>United States</option>
+                      <option>India</option>
+                      <option>Mexico</option>
+                    </select>
+                </div>
+
+                <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+                    <label for="postal-code" class="block text-sm font-medium text-gray-700">ZIP / Postal code</label>
+                    <input type="text" name="zip_code" id="postal-code" autocomplete="postal-code" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                  </div>
+
+                <div class="col-span-6">
+                    <label for="street-address" class="block text-sm font-medium text-gray-700">Street address</label>
+                    <input type="text" name="street_address" id="street-address" autocomplete="street-address" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                  </div>
+  
+                <div class="col-span-6 sm:col-span-4">
+                    <label for="email-address" class="block text-sm font-medium text-gray-700">Email address</label>
+                    <input name="email" type="email" name="email-address" id="email-address" autocomplete="email" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                  </div>
+                
+                <div class="col-span-6 sm:col-span-4">
+                    <label for="email-address" class="block text-sm font-medium text-gray-700">Crime </label>
+                    <input name="crime" type="text"  id="email-address" autocomplete="email" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                </div>
+
+                <div class="col-span-6 sm:col-span-4">
+                    <label for="crime-description" class="block text-sm font-medium text-gray-700">crime-description </label>
+                    <input name="crime-description" type="text" id="large-input" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                </div>
+
+                <div class="col-span-6 sm:col-span-4">                    
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="file_input">Upload file</label>
+                    <input name="proof" class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" type="file">
+                </div>
+            </div>
+        </form>
+            <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
+              <button type="submit" class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Submit</button>
+              <a href="{% url 'dashboard' %}" class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Go to home</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+
+
+  <div class="mb-10 p-6 container md:w-2/3 xl:w-auto mx-auto flex flex-col xl:items-stretch justify-between xl:flex-row">
+    <div class="xl:w-1/2 md:mb-14 xl:mb-0 relative h-auto flex items-center justify-center">
+        <img src="https://cdn.tuk.dev/assets/components/26May-update/newsletter-1.png" alt="Envelope with a newsletter" role="img" class="h-full xl:w-full lg:w-1/2 w-full" />
+    </div>
+    <div class="w-full xl:w-1/2 xl:pl-40 xl:py-28">
+        {% if user.newsletter == True %}
+        <div class="flex items-stretch mt-12">
+          <h2 class="text-2xl md:text-4xl xl:text-5xl font-bold leading-10 text-gray-800 mb-4 text-center xl:text-left md:mt-0 mt-4">You have already Subscribed Our Newsletter</h2>
+        </div>
+        {% endif %}
+
+        {% if user.newsletter == False %}
+        <form action="{% url 'newsletter' %}" method="POST">
+          <h2 class="text-2xl md:text-4xl xl:text-5xl font-bold leading-10 text-gray-800 mb-4 text-center xl:text-left md:mt-0 mt-4">Subscribed To Our Newsletter</h2>
+        <div class="flex items-stretch mt-12">
+          <input class="bg-gray-100 rounded-lg rounded-r-none text-base leading-none text-gray-800 p-5 w-4/5 border border-transparent focus:outline-none focus:border-gray-500" type="email" placeholder="Your Email" />
+          <button class="w-32 rounded-l-none hover:bg-indigo-600 bg-indigo-700 rounded text-base font-medium leading-none text-white p-5 uppercase focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700">subscribe</button>
+        </form>
+        </div>
+        {% endif %}
+    </div>
+
+  
+
+{% endblock content %}
