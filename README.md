@@ -12,12 +12,23 @@
     through which a person can give tip-off about any suspicious activity or crime in a secure
     and completely anonymous manner. The platform will allow people to give out the most 
     useful information in the shortest amount of time. 
-## Contributing
 
-Contributions are always welcome!
+## Contributions are always welcome! 🪄
 
-See `contributing.md` for ways to get started.
-
+This is how you can contribute
+```
+	1. Fork This Repository
+	2. Using Git on your local machine, clone your fork using the URL you just copied: git clone URL_OF_FORK
+	3. Navigate to Repo enter cd NAME_OF_REPOSITORY
+	4. git remote add upstream URL_OF_PROJECT
+	5. git remote -v
+	6. git pull upstream master
+	7. git checkout -b BRANCH_NAME
+	8. Make Changes
+	9. git add .
+       10. git commit -m "commit message"
+       11. git push -u origin BRANCH_NAME
+```
 Please adhere to this project's `code of conduct`.
 
 
