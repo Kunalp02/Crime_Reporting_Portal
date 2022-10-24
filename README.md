@@ -73,6 +73,9 @@ HTML5, CSS3, TailwindCSS, Python, Django
 Courier API
 ```
 
-## License
-[MIT](https://github.com/Kunalp02/Crime_Reporting_Portal/blob/7bd466e67c9704d01cef970731e86dc8637ae9cb/LICENSE)
+## Badges
+
+[![MIT License](https://img.shields.io/github/license/Kunalp02/Crime_Reporting_Portal)](https://choosealicense.com/licenses/mit/)
+
+
 
