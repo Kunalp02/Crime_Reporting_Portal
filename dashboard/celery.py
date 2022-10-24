@@ -16,7 +16,7 @@ app.config_from_object('django.conf:settings', namespace='CELERY')
 app.conf.beat_schedule = {
      'trigger_new': {
         'task': 'accounts.tasks.email',
-        'schedule': 5.0,
+        'schedule': crontab(hour=10, minute=5),
     },
 }
 

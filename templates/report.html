@@ -62,11 +62,11 @@
                     <input name="proof" class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" type="file">
                 </div>
             </div>
-        </form>
             <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
               <button type="submit" class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Submit</button>
               <a href="{% url 'dashboard' %}" class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Go to home</a>
             </div>
+          </form>
           </div>
         </form>
       </div>
@@ -85,7 +85,6 @@
           <h2 class="text-2xl md:text-4xl xl:text-5xl font-bold leading-10 text-gray-800 mb-4 text-center xl:text-left md:mt-0 mt-4">You have already Subscribed Our Newsletter</h2>
         </div>
         {% endif %}
-
         {% if user.newsletter == False %}
         <form action="{% url 'newsletter' %}" method="POST">
           <h2 class="text-2xl md:text-4xl xl:text-5xl font-bold leading-10 text-gray-800 mb-4 text-center xl:text-left md:mt-0 mt-4">Subscribed To Our Newsletter</h2>

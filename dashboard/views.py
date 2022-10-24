@@ -40,33 +40,9 @@ def report_crime(request):
         report = Report.objects.create(user=user, country=country, state=state, crime=crime, description=crime_description, proof=proof)
         report.save()
         return render(request, 'successfully_reported.html')
-    try:
-        user = Account.objects.get(email=request.user.email)
-        user.newsletter = True
-        user.save()        
-        context = {
-            'status' : user.newsletter
-        }    
-        return render(request, 'report.html', context)
-    except:
-        pass
-
-    resp = client.send_message(
-        message={
-            "to": {
-            "email": "kunalpatil970730@gmail.com",
-            },
-            "template": "FX7HJ0EJ0B4GJTMG2SVPRGST9ZZ8",
-            "data": {
-            "recipientName": "recipientName",
-            "mail_subject": "mail_subject",
-            "message": "message",
-            },
-        }
-        )
-    print(resp['requestId'])
- 
-    return render(request, 'report.html')
+    else:
+        return render(request, 'report.html')
+    
 
 
 @csrf_exempt

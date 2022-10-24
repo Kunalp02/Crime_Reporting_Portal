@@ -8,6 +8,9 @@ from django.views.decorators.csrf import csrf_exempt
 from trycourier import Courier
 from .tasks import register_email
 
+client = Courier(auth_token="pk_prod_TG1GS5TYWYMN47QGJZGXG1YBXQJM")
+
+
 @csrf_exempt
 def login(request):
     if request.method == 'POST':
@@ -37,7 +40,7 @@ def signup(request):
         user = Account.objects.create_user(first_name=first_name, last_name=last_name, email=email, username=username, password=password)
         user.is_active = True
         user.save()
-        register_email.delay(email)
+        register_email.delay(email) # task will be triggered through source code
         return redirect('login')
         
     return render(request, 'accounts/sign_up.html')
@@ -59,6 +62,20 @@ def newsletter(request):
             user = Account.objects.get(email=request.user.email)
             user.newsletter = True
             user.save()
+            resp = client.send_message(
+            message={
+                "to": {
+                "email": user.email,
+                },
+                "template": "FX7HJ0EJ0B4GJTMG2SVPRGST9ZZ8",
+                "data": {
+                "recipientName": "recipientName",
+                "mail_subject": "mail_subject",
+                "message": "message",
+                },
+            }
+            )
+            print(resp['requestId'])
             return redirect('report_crime')
         except:
             pass
