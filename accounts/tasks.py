@@ -10,7 +10,7 @@ from decouple import config
 import datetime
 
 
-# Email Automation by using Celery
+# News Email Automation by using Celery
 @shared_task(bind=True)
 def email(self):
     client = Courier(auth_token=config("AUTH_TOEKN", default='pk_prod_TG1GS5TYWYMN47QGJZGXG1YBXQJM'))
@@ -54,6 +54,24 @@ def email(self):
         print(resp['requestId'])
     return "Done"
 
+
+@shared_task(bind=True)
+def register_email(self, email):
+    client = Courier(auth_token="pk_prod_TG1GS5TYWYMN47QGJZGXG1YBXQJM")
+
+    resp = client.send_message(
+    message={
+        "to": {
+            "email": email,
+        },
+        "template": "JTBZ16M271MT47GSMY9VVRS8P2E4",
+        "data": {
+        },
+    }
+    )
+    print(resp['requestId'])     
+
+    return "Sent successfully"   
 
 
 

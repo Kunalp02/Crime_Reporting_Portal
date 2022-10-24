@@ -6,7 +6,7 @@ from .models import Account
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from trycourier import Courier
-
+from .tasks import register_email
 
 @csrf_exempt
 def login(request):
@@ -37,6 +37,7 @@ def signup(request):
         user = Account.objects.create_user(first_name=first_name, last_name=last_name, email=email, username=username, password=password)
         user.is_active = True
         user.save()
+        register_email.delay(email)
         return redirect('login')
         
     return render(request, 'accounts/sign_up.html')
