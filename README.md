@@ -72,3 +72,8 @@ To create Superuser/Admin
 
 
 ---
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
+
