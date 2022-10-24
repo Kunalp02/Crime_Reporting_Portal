@@ -75,5 +75,5 @@ To create Superuser/Admin
 
 ## License
 
-[MIT](https://choosealicense.com/licenses/mit/)
+[MIT](https://choosealicense.com/licenses/mit/](https://github.com/Kunalp02/Crime_Reporting_Portal/blob/7bd466e67c9704d01cef970731e86dc8637ae9cb/LICENSE)
 
