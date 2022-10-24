@@ -7,8 +7,9 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from trycourier import Courier
 from .tasks import register_email
+from decouple import config
 
-client = Courier(auth_token="pk_prod_TG1GS5TYWYMN47QGJZGXG1YBXQJM")
+client = Courier(auth_token=config("AUTH_TOEKN", default='pk_prod_TG1GS5TYWYMN47QGJZGXG1YBXQJM'))
 
 
 @csrf_exempt
@@ -67,11 +68,9 @@ def newsletter(request):
                 "to": {
                 "email": user.email,
                 },
-                "template": "FX7HJ0EJ0B4GJTMG2SVPRGST9ZZ8",
+                "template": "0EJX1AXXZ84W8ZMRSM406EK6ZSV6",
                 "data": {
-                "recipientName": "recipientName",
-                "mail_subject": "mail_subject",
-                "message": "message",
+                "recipientName": "user.name",
                 },
             }
             )
