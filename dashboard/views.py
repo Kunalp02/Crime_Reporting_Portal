@@ -7,24 +7,30 @@ from django.db.models import Q
 from trycourier import Courier
 from newscatcherapi import NewsCatcherApiClient
 from pprint import pprint
+from decouple import config
 
 
-client = Courier(auth_token="pk_prod_TG1GS5TYWYMN47QGJZGXG1YBXQJM")
+client = Courier(auth_token=config("AUTH_TOEKN", default='pk_prod_TG1GS5TYWYMN47QGJZGXG1YBXQJM'))
 
 
 @csrf_exempt
 def dashboard(request):
+    try:
+        newscatcherapi = NewsCatcherApiClient(x_api_key=config("API_KEY"))
 
-    newscatcherapi = NewsCatcherApiClient(x_api_key='SzG3tdKC9lx6o5cefl5auNswud-xs0XUGZcL4pMpYyw')
+        all_articles = newscatcherapi.get_search(q="latest")
+        # pprint(all_articles.get('articles')[:5])
+        context = {
+            'all_articles' : all_articles.get('articles')[:9],
+        }
+        return render(request, 'dashboard.html', context)
+    except: 
+        pass
+    
+    return render(request, 'dashboard.html')
 
-    all_articles = newscatcherapi.get_search(q="latest")
-    pprint(all_articles.get('articles')[:5])
 
-    context = {
-        'all_articles' : all_articles.get('articles')[:9],
-    }
-
-    return render(request, 'dashboard.html', context)
+   
 
 
 @csrf_exempt
@@ -64,7 +70,7 @@ def search(request):
     if 'keyword' in request.GET:
         keyword = request.GET['keyword']
         if keyword:
-            newscatcherapi = NewsCatcherApiClient(x_api_key='SzG3tdKC9lx6o5cefl5auNswud-xs0XUGZcL4pMpYyw')
+            newscatcherapi = NewsCatcherApiClient(x_api_key=config("API_KEY"))
             all_articles = newscatcherapi.get_search(q=keyword)
 
         context = {
