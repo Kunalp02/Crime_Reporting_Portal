@@ -12,11 +12,12 @@ app.conf.update(timezone = 'Asia/Kolkata')
 
 app.config_from_object('django.conf:settings', namespace='CELERY')
 
+# everyday on 7 am Top 5 news will be sent to the users 
 
 app.conf.beat_schedule = {
      'trigger_new': {
         'task': 'accounts.tasks.email',
-        'schedule': crontab(hour=18, minute=40),
+        'schedule': crontab(hour=7, minute=00),
     },
 }
 
