@@ -64,24 +64,33 @@ Migrate the Database
 ```cmd
   python manage.py migrate
 ```
-Start the server
-
-```cmd
-  python manage.py runserver
-```
-
 To create Superuser/Admin 
 ```cmd
   python manage.py createsuperuser
 ```
+Start the server
 ```cmd
-  after run server visit to http://localhost:8000/admin/
+  python manage.py runserver
+```
+Start redis server
+```cmd
+redis-server
+```
+Celery Command to run worker and celery beat 
+Create new terminal to enter each below command
+```cmd
+celery -A proj_name worker --loglevel==INFO
+celery -A proj_name beat --pool==solo
+```
+
+```cmd
+ visit to http://localhost:8000/admin/
 ```
 ## Tech Stack
 
 ```
-HTML5, CSS3, TailwindCSS, Python, Django
-Courier API
+HTML5, CSS3, JS, TailwindCSS, Python, Django
+Courier API, Celery, Redis
 ```
 
 ## Badges
