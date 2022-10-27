@@ -29,7 +29,7 @@ This is how you can contribute
        10. git commit -m "commit message"
        11. git push -u origin BRANCH_NAME
 ```
-Please adhere to this project's `code of conduct`.
+Please adhere to this project's [Code Of Conduct](https://github.com/Kunalp02/Crime_Reporting_Portal/blob/master/CODE_OF_CONDUCT.md).
 
 
 ## Documentation
